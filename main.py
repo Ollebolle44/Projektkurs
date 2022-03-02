@@ -50,6 +50,4 @@ ev3.speaker.beep()
 #adosufyhbpoiasdjbngfpiadjfg
 #ich bin ein junge
 #skinflöjt ja
-#dededededee
-#vafan
-#synca bättre andre
+
