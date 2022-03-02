@@ -47,3 +47,6 @@ ev3.speaker.beep()
 #hejsan
 #heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeej
 #adosufyhbpoiasdjbngfpiadjfg
+#adosufyhbpoiasdjbngfpiadjfg
+#ich bin ein junge
+#skinflöjt
