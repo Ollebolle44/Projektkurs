@@ -40,5 +40,3 @@ ev3.speaker.beep()
 
 #fubjar detta 123
 
-
-kuk
