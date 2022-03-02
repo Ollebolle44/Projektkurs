@@ -34,9 +34,11 @@ ev3.speaker.beep()
 # Turn clockwise by 360 degrees and back again.
 #robot.turn(360)
 ev3.speaker.beep()
-kuk
 
 #robot.turn(-360)
 ev3.speaker.beep()  
 
-#fubjar detta 1235
+#fubjar detta 123
+
+
+kuk
