@@ -41,11 +41,3 @@ ev3.speaker.beep()
 #fubjar detta 123
 #vill testa att det alltid funkar please
 #dasdasdaad
-
-#uggabogga
-#dasdasdaad
-#hejsan
-#heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeej
-#adosufyhbpoiasdjbngfpiadjfg
-#ich bin ein junge
-
