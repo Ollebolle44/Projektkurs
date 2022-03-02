@@ -52,3 +52,4 @@ ev3.speaker.beep()
 #skinflöjt ja
 #dededededee
 #vafan
+#synca bättre andre
