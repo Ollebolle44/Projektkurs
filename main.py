@@ -39,4 +39,4 @@ ev3.speaker.beep()
 ev3.speaker.beep()  
 
 #fubjar detta 123
-
+#vill testa att det alltid funkar please
