@@ -44,3 +44,4 @@ ev3.speaker.beep()
 #uggabogga
 #dasdasdaad
 #hejsan
+#kuken står
