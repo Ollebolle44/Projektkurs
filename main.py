@@ -18,6 +18,8 @@ right_motor = Motor(Port.A)
 right_sensor = ColorSensor(Port.S1)
 left_sensor = ColorSensor(Port.S2)
 
+both_sensor = right_sensor + left_sensor 
+
 #Gör så att båda motorerna kan gå samtidigt
 robot = DriveBase(left_motor, right_motor, wheel_diameter=65.5, axle_track=104)
 
@@ -30,7 +32,13 @@ Drive_Speed = 100
 
 #Oändlig loop
 while True:
-    if right_sensor < Black:
+    #1. Failsafe
+    #2. Höger Sensor ser svart svänger höger
+    #3. Vänster Sensor ser svart svänger vänster
+    #4. Allt är fine kör rakt
+    if both_sensor > Both_White:
+        turn_rate = 35
+    elif right_sensor < Black:
         turn_rate = 20
     elif left_sensor < Black:'
         turn_rate = -20
