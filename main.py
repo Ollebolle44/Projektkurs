@@ -17,37 +17,27 @@ right_motor = Motor(Port.A)
 
 right_sensor = ColorSensor(Port.S1)
 left_sensor = ColorSensor(Port.S2)
-# Write your program here.  
-ev3.speaker.beep()
-worth = left_sensor.reflection()
-print(worth)
 
+#Gör så att båda motorerna kan gå samtidigt
 robot = DriveBase(left_motor, right_motor, wheel_diameter=65.5, axle_track=104)
 
-# Go forward and backwards for one meter.
-#robot.straight(1000)
-ev3.speaker.beep()
+#Värden på färgena
+Black = 10
+Both_White = 50
 
-#robot.straight(-1000)
-ev3.speaker.beep()
+#Värde på hastigheten på roboten(antar mm/s)
+Drive_Speed = 100
 
-# Turn clockwise by 360 degrees and back again.
-#robot.turn(360)
-ev3.speaker.beep()
+#Oändlig loop
+while True:
+    if right_sensor < Black:
+        turn_rate = 20
+    elif left_sensor < Black:'
+        turn_rate = -20
+    else:
+        turn_rate = 0
+    
+    robot.drive(DRIVE_SPEED, turn_rate)
+    wait(10)
 
-#robot.turn(-360)
-ev3.speaker.beep()  
 
-#fubjar detta 123
-#vill testa att det alltid funkar please
-#dasdasdaad
-
-#uggabogga
-#dasdasdaad
-#hejsan
-#heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeej
-#adosufyhbpoiasdjbngfpiadjfg
-#adosufyhbpoiasdjbngfpiadjfg
-#ich bin ein junge
-#skinflöjt ja
-#andre synca 
