@@ -12,9 +12,11 @@ from pybricks.robotics import DriveBase
 # Create your objects here.
 ev3 = EV3Brick()
 
+#Motorer
 left_motor = Motor(Port.B)
 right_motor = Motor(Port.A)
 
+#Färgsensorer
 right_sensor = ColorSensor(Port.S1)
 left_sensor = ColorSensor(Port.S2)
 
@@ -47,5 +49,3 @@ while True:
     
     robot.drive(DRIVE_SPEED, turn_rate)
     wait(10)
-
-
