@@ -36,7 +36,7 @@ while True:
     rsensor = right_sensor.reflection()
     lsensor = left_sensor.reflection()
     both_sensor = rsensor + lsensor
-
+    print(lsensor)
     #1. Failsafe
     #2. Höger Sensor ser svart svänger höger
     #3. Vänster Sensor ser svart svänger vänster
