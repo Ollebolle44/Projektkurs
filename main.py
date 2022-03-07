@@ -32,21 +32,21 @@ Drive_Speed = 100
 
 #Oändlig loop
 while True:
+    #uppdatering av sensorernas värde samt summa av dem
+    rsensor = right_sensor.reflection()
+    lsensor = left_sensor.reflection()
+    both_sensor = rsensor + lsensor
+
     #1. Failsafe
     #2. Höger Sensor ser svart svänger höger
     #3. Vänster Sensor ser svart svänger vänster
     #4. Allt är fine kör rakt
-
-    rsensor = right_sensor.reflection()
-    lsensor = left_sensor.reflection()
-    both_sensor = rsensor + lsensor
-    
     if both_sensor > Both_White:
-        turn_rate = 35
+        turn_rate = 180
     elif rsensor < Black:
-        turn_rate = 20
+        turn_rate = 150
     elif lsensor < Black:
-        turn_rate = -20
+        turn_rate = -150
     else:
         turn_rate = 0
     
