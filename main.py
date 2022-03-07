@@ -42,7 +42,7 @@ while True:
         turn_rate = 35
     elif right_sensor < Black:
         turn_rate = 20
-    elif left_sensor < Black:'
+    elif left_sensor < Black:
         turn_rate = -20
     else:
         turn_rate = 0
