@@ -28,12 +28,13 @@ color_sensor = ColorSensor(Port.S1)
 deposit = 1
 pickup = 0
 turn_crossection = 3
+stop = False
 
 #Gör så att båda motorerna kan gå samtidigt
 robot = DriveBase(left_motor, right_motor, wheel_diameter=75.5, axle_track=104)
 
 #Värden på färgena + sätter in färger
-POSSIBLE_COLORS = [Color.RED, Color.GREEN, Color.BLUE, Color.WHITE]
+POSSIBLE_COLORS = [Color.RED, Color.GREEN, Color.BLUE]
 Black = 10
 Both_White = 80 
 
@@ -66,9 +67,13 @@ while True:
         print("ngt konstigt")
         pickup = 0
 
-    if deposit==4:
+    if deposit >= 4 and stop == True:
         Drive_Speed=0
-        deposit = 0
+        turn_rate = 0
+        deposit = 1
+
+        robot.straight(320)
+        wait(2000)
         print("hej")
         #kör tills trycksensor trycks åt?
         #sedan gör den ngn sekvens så den kommer rätt med gatesen
@@ -77,50 +82,65 @@ while True:
         if lastcolor == Color.BLUE:
             #blå öppna gate 1
             gate_big.run_target(90, 90)
+            wait(1000)
             gate_big.run_target(90, 0)
+            stop = False
             print("blå")
         elif color == Color.GREEN:
             gate_big.run_target(90, -90)
+            wait(1000)
             gate_big.run_target(90, 0)
+            stop = False
             print("grön")
         elif lastcolor == Color.RED:
             gate_small_medium.run_target(90, -90)
+            wait(1000)
             gate_small_medium.run_target(90, 0)
+            stop = False
             print("röd")
         pickup +=1
-        wait(10000000)
+        wait(1000)
+        robot.straight(-380)
+        wait(1000)
+        robot.turn(260)
+        wait(1000)
+        Drive_Speed = 50
         #här ksk vi ska ha en variabel som adderas med 1 och när den varit på alla 3
         #så åker den tillbaka till upplockaren?
-    elif color in POSSIBLE_COLORS and turn_crossection == 4:
+    elif color in POSSIBLE_COLORS and turn_crossection == 4 and stop == False:
         #300 mm 90 grader 3 sekunder
         robot.drive_time(80, 0, 1100)
-        robot.drive_time(70, -90, 1400)
-        deposit +=1
-        turn_crossection = -1
+        robot.drive_time(70, 90, 1500)
+        robot.drive_time(60, 0, 1500)
+        deposit +=2
+        turn_crossection = 2
         print("sväng")
-    elif color in POSSIBLE_COLORS and deposit ==3:
+    elif color in POSSIBLE_COLORS and deposit ==3 and stop == False:
         deposit+=1
         lastcolor = color
-    elif color in POSSIBLE_COLORS:
+        stop = True
+    elif color in POSSIBLE_COLORS and stop == False:
         deposit +=1
-        robot.drive_time(30, 0, 1000)
-    elif color == Color.YELLOW and turn_crossection ==2:
-        turn_crossection +=1
-        robot.drive_time(30, -45, 500)
-    elif color == Color.YELLOW:
+        robot.drive_time(30, 0, 800)
+    elif color == Color.YELLOW and stop == False:
         turn_crossection += 1
-        robot.drive_time(30, 0, 1000)
+        robot.drive_time(30, 0, 800)
         print("addera gul")
-    elif both_sensor > Both_White:
-        turn_rate = 0
-    elif rsensor < Black:
-        turn_rate = 150
+        #elif both_sensor > Both_White and color == Color.BROWN:
+        #Drive_Speed = 0
+        #turn_rate = 0
+    elif rsensor < Black and stop == False:
+        turn_rate = 100
         print("höger")
-    elif lsensor < Black:
-        turn_rate = -150
+    elif lsensor < Black and stop == False:
+        turn_rate = -100
         print("vänster")
     else:
         turn_rate = 0
     
-    robot.drive(Drive_Speed, turn_rate)
+    if stop == False:
+        robot.drive(Drive_Speed, turn_rate)
+    else:
+        robot.drive(0, 0)
+    
     
