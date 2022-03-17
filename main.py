@@ -76,11 +76,12 @@ while True:
         #if satser med 3 olika färgena som öppnar rätt gate beroende på färg
         if lastcolor == Color.BLUE:
             #blå öppna gate 1
-            gate_small_medium.run_target(90, -90)
-            gate_small_medium.run_target(90, 0)
+            gate_big.run_target(90, 90)
+            gate_big.run_target(90, 0)
             print("blå")
         elif color == Color.GREEN:
-            #grön öppna gate 2
+            gate_big.run_target(90, -90)
+            gate_big.run_target(90, 0)
             print("grön")
         elif lastcolor == Color.RED:
             gate_small_medium.run_target(90, -90)
@@ -92,8 +93,8 @@ while True:
         #så åker den tillbaka till upplockaren?
     elif color in POSSIBLE_COLORS and turn_crossection == 4:
         #300 mm 90 grader 3 sekunder
-        robot.drive_time(100, 0, 1000)
-        robot.drive_time(50, -90, 1500)
+        robot.drive_time(80, 0, 1100)
+        robot.drive_time(70, -90, 1400)
         deposit +=1
         turn_crossection = -1
         print("sväng")
