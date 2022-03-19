@@ -67,7 +67,7 @@ while True:
             print("banab")
             wait(5000)
             print("yes det funkar")
-            
+            robot.turn(249)
             
             
             
@@ -83,7 +83,7 @@ while True:
             pickupballs = True
         elif color in POSSIBLE_COLORS and turn_crossection == 4:
             robot.drive_time(80, 0, 1100)
-            robot.drive_time(70, 105, 1600)
+            robot.drive_time(70, 99, 1500)
             robot.drive_time(35, 0, 1500)
             turn_crossection = 0
         elif color in POSSIBLE_COLORS:
@@ -92,10 +92,10 @@ while True:
             turn_crossection +=1
             robot.drive_time(28, 0, 800)
         elif rsensor < Black and stop == False:
-            turn_rate = 130
+            turn_rate = 110
             print("höger")
         elif lsensor < Black and stop == False:
-            turn_rate = -130
+            turn_rate = -110
             print("vänster")
         else:
             turn_rate = 0
@@ -148,14 +148,14 @@ while True:
             stop = False
             print("vit")
         elif color == Color.GREEN:
-            #färg 2 öppna gate 2
+            #färg 2 öppna gate 2 
             gate_big.run_target(90, -90)
             wait(1000)
             gate_big.run_target(90, 0)
             stop = False
             print("grön")
         elif lastcolor == Color.RED:
-            #färg 3 öppna gate 3
+            #färg 3 öppna gate 3 största bollarna
             gate_small_medium.run_target(90, -90)
             wait(1000)
             gate_small_medium.run_target(90, 0)
@@ -169,7 +169,7 @@ while True:
         #Sekvens som backar tillbacks roboten och sen gör en 180-sväng(260 är en konstig felfaktor men den svänger 180)
         robot.straight(-360)
         wait(1000)
-        robot.turn(230)
+        robot.turn(245)
         wait(1000)
         Drive_Speed = 45
         #Framtiden kan en failsafe i form av en whileloop skapas för att hitta den svarta färgen
@@ -180,7 +180,7 @@ while True:
     elif color in POSSIBLE_COLORS and turn_crossection >= 4 and stop == False:
         #Sekvens för sväng kan behövas finjusteras men den funkar atm
         robot.drive_time(80, 0, 1100)
-        robot.drive_time(70, 94, 1500)
+        robot.drive_time(70, 99, 1500)
         robot.drive_time(35, 0, 1500)
         deposit +=2
         turn_crossection = 0
@@ -194,10 +194,10 @@ while True:
         #Sekvens så att färgsensr åker förbi tejpen och inte läser av den igen
         robot.drive_time(28, 0, 800)
     elif rsensor < Black and stop == False:
-        turn_rate = 105
+        turn_rate = 110
         print("höger")
     elif lsensor < Black and stop == False:
-        turn_rate = -105
+        turn_rate = -110
         print("vänster")
     else:
         turn_rate = 0
