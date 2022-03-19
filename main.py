@@ -31,6 +31,7 @@ pickup = 0
 turn_crossection = 3
 stop = False
 pressed = False
+pickupballs = False
 
 #Gör så att båda motorerna kan gå samtidigt
 robot = DriveBase(left_motor, right_motor, wheel_diameter=75.5, axle_track=104)
@@ -82,7 +83,7 @@ while True:
             pickupballs = True
         elif color in POSSIBLE_COLORS and turn_crossection == 4:
             robot.drive_time(80, 0, 1100)
-            robot.drive_time(70, 97, 1500)
+            robot.drive_time(70, 105, 1600)
             robot.drive_time(35, 0, 1500)
             turn_crossection = 0
         elif color in POSSIBLE_COLORS:
@@ -91,10 +92,10 @@ while True:
             turn_crossection +=1
             robot.drive_time(28, 0, 800)
         elif rsensor < Black and stop == False:
-            turn_rate = 105
+            turn_rate = 130
             print("höger")
         elif lsensor < Black and stop == False:
-            turn_rate = -105
+            turn_rate = -130
             print("vänster")
         else:
             turn_rate = 0
