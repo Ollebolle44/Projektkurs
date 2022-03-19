@@ -63,15 +63,17 @@ while True:
 
         if pickupballs == True:
             #sekvens för avlämning av bollar
+            print("banab")
             wait(5000)
+            print("yes det funkar")
             
             
             
             
             
             
-            pickupballs = False
-            pickup = 0
+            #pickupballs = False
+            #pickup = 0
         elif pressed == True:
             #sekvens för att stoppa roboten och sedan gå in i första ifsatsen
             Drive_Speed = 0
@@ -80,7 +82,7 @@ while True:
             pickupballs = True
         elif color in POSSIBLE_COLORS and turn_crossection == 4:
             robot.drive_time(80, 0, 1100)
-            robot.drive_time(70, 94, 1500)
+            robot.drive_time(70, 97, 1500)
             robot.drive_time(35, 0, 1500)
             turn_crossection = 0
         elif color in POSSIBLE_COLORS:
@@ -89,13 +91,13 @@ while True:
             turn_crossection +=1
             robot.drive_time(28, 0, 800)
         elif rsensor < Black and stop == False:
-        turn_rate = 105
-        print("höger")
+            turn_rate = 105
+            print("höger")
         elif lsensor < Black and stop == False:
-        turn_rate = -105
-        print("vänster")
+            turn_rate = -105
+            print("vänster")
         else:
-        turn_rate = 0
+            turn_rate = 0
 
         if stop == False:
             robot.drive(Drive_Speed, turn_rate)
@@ -166,7 +168,7 @@ while True:
         #Sekvens som backar tillbacks roboten och sen gör en 180-sväng(260 är en konstig felfaktor men den svänger 180)
         robot.straight(-360)
         wait(1000)
-        robot.turn(260)
+        robot.turn(230)
         wait(1000)
         Drive_Speed = 45
         #Framtiden kan en failsafe i form av en whileloop skapas för att hitta den svarta färgen
