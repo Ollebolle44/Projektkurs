@@ -67,14 +67,22 @@ while True:
             print("banab")
             wait(5000)
             print("yes det funkar")
+            robot.straight(-100)
             robot.turn(249)
             
             
             
             
             
-            #pickupballs = False
-            #pickup = 0
+            pickupballs = False
+            pickup = 0
+            
+            #reset values
+            Drive_Speed = 45
+            deposit = 1
+            pickup = 0
+            turn_crossection = 3
+            stop = False
         elif pressed == True:
             #sekvens för att stoppa roboten och sedan gå in i första ifsatsen
             Drive_Speed = 0
@@ -92,10 +100,10 @@ while True:
             turn_crossection +=1
             robot.drive_time(28, 0, 800)
         elif rsensor < Black and stop == False:
-            turn_rate = 110
+            turn_rate = 100
             print("höger")
         elif lsensor < Black and stop == False:
-            turn_rate = -110
+            turn_rate = -100
             print("vänster")
         else:
             turn_rate = 0
@@ -140,27 +148,27 @@ while True:
 
         print("hej")
         #if satser med 3 olika färgena som öppnar rätt gate beroende på färg
-        if lastcolor == Color.WHITE:
-            #färg 1 öppna gate 1
+        if lastcolor == Color.BLUE:
+            #färg 1 öppna gate 1 minsta
             gate_big.run_target(90, 90)
             wait(1000)
             gate_big.run_target(90, 0)
             stop = False
-            print("vit")
-        elif color == Color.GREEN:
-            #färg 2 öppna gate 2 
+            print("Blå")
+        elif lastcolor == Color.GREEN:
+            #färg 2 öppna gate 2 mellersta
             gate_big.run_target(90, -90)
             wait(1000)
             gate_big.run_target(90, 0)
             stop = False
             print("grön")
-        elif lastcolor == Color.RED:
+        elif lastcolor == Color.WHITE:
             #färg 3 öppna gate 3 största bollarna
             gate_small_medium.run_target(90, -90)
             wait(1000)
             gate_small_medium.run_target(90, 0)
             stop = False
-            print("röd")
+            print("vit")
         
         #Adderar pickup med 1 varje deposit(pickup=3 -> whileloop som åker och plockar upp nya bollar)
         pickup +=1
@@ -194,10 +202,10 @@ while True:
         #Sekvens så att färgsensr åker förbi tejpen och inte läser av den igen
         robot.drive_time(28, 0, 800)
     elif rsensor < Black and stop == False:
-        turn_rate = 110
+        turn_rate = 100
         print("höger")
     elif lsensor < Black and stop == False:
-        turn_rate = -110
+        turn_rate = -100
         print("vänster")
     else:
         turn_rate = 0
