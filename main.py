@@ -27,7 +27,7 @@ color_sensor = ColorSensor(Port.S1)
 touch_sensor = TouchSensor(Port.S4)
 
 deposit = 1
-pickup = 0
+pickup = 3
 turn_crossection = 3
 stop = False
 pressed = False
@@ -91,7 +91,7 @@ while True:
             pickupballs = True
         elif color in POSSIBLE_COLORS and turn_crossection == 4:
             robot.drive_time(80, 0, 1100)
-            robot.drive_time(70, 99, 1500)
+            robot.drive_time(70, 103, 1500)
             robot.drive_time(35, 0, 1500)
             turn_crossection = 0
         elif color in POSSIBLE_COLORS:
@@ -188,7 +188,7 @@ while True:
     elif color in POSSIBLE_COLORS and turn_crossection >= 4 and stop == False:
         #Sekvens för sväng kan behövas finjusteras men den funkar atm
         robot.drive_time(80, 0, 1100)
-        robot.drive_time(70, 99, 1500)
+        robot.drive_time(70, 103, 1500)
         robot.drive_time(35, 0, 1500)
         deposit +=2
         turn_crossection = 0
