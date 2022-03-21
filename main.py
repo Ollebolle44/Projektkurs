@@ -91,7 +91,7 @@ while True:
             pickupballs = True
         elif color in POSSIBLE_COLORS and turn_crossection == 4:
             robot.drive_time(80, 0, 1100)
-            robot.drive_time(70, 103, 1500)
+            robot.drive_time(70, 99, 1500)
             robot.drive_time(35, 0, 1500)
             turn_crossection = 0
         elif color in POSSIBLE_COLORS:
@@ -155,13 +155,13 @@ while True:
             gate_big.run_target(90, 0)
             stop = False
             print("Blå")
-        elif lastcolor == Color.GREEN:
+        elif lastcolor == Color.RED:
             #färg 2 öppna gate 2 mellersta
             gate_big.run_target(90, -90)
             wait(1000)
             gate_big.run_target(90, 0)
             stop = False
-            print("grön")
+            print("röd")
         elif lastcolor == Color.WHITE:
             #färg 3 öppna gate 3 största bollarna
             gate_small_medium.run_target(90, -90)
@@ -214,5 +214,4 @@ while True:
         robot.drive(Drive_Speed, turn_rate)
     else:
         robot.drive(0, 0)
-    
-    
+
