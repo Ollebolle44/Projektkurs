@@ -27,7 +27,7 @@ color_sensor = ColorSensor(Port.S1)
 touch_sensor = TouchSensor(Port.S4)
 
 deposit = 1
-pickup = 3
+pickup = 0
 turn_crossection = 3
 stop = False
 pressed = False
@@ -68,8 +68,19 @@ while True:
             wait(5000)
             print("yes det funkar")
             robot.straight(-100)
-            robot.turn(249)
-            
+            robot.turn(260)
+            k = 1
+            turnkonst = 0
+            lastcolor = color_sensor.color()
+            while lastcolor != Color.BLACK:
+                turnkonst += 5
+                robot.turn(-5*k)
+                lastcolor = color_sensor.color()
+                wait(500)
+                if turnkonst == 90:
+                    robot.turn(90)
+                    k *= -1
+                    turnkonst = 0
             
             
             
@@ -177,8 +188,23 @@ while True:
         #Sekvens som backar tillbacks roboten och sen gör en 180-sväng(260 är en konstig felfaktor men den svänger 180)
         robot.straight(-360)
         wait(1000)
-        robot.turn(245)
+        robot.turn(290)
         wait(1000)
+        
+        k = 1
+        turnkonst = 0
+        lastcolor = color_sensor.color()
+        while lastcolor != Color.BLACK:
+            turnkonst += 5
+            robot.turn(-5*k)
+            lastcolor = color_sensor.color()
+            wait(500)
+            if turnkonst == 90:
+                robot.turn(90)
+                k *= -1
+                turnkonst = 0
+            
+        
         Drive_Speed = 45
         #Framtiden kan en failsafe i form av en whileloop skapas för att hitta den svarta färgen
     elif color in POSSIBLE_COLORS and deposit ==3 and stop == False:
