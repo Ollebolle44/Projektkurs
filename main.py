@@ -104,6 +104,20 @@ while True:
             robot.drive_time(80, 0, 1100)
             robot.drive_time(70, 99, 1500)
             robot.drive_time(35, 0, 1500)
+
+            k = 1
+            turnkonst = 0
+            lastcolor = color_sensor.color()
+            while lastcolor != Color.BLACK:
+                turnkonst += 5
+                robot.turn(-5*k)
+                lastcolor = color_sensor.color()
+                wait(500)
+                if turnkonst == 90:
+                    robot.turn(90)
+                    k *= -1
+                    turnkonst = 0
+
             turn_crossection = 0
         elif color in POSSIBLE_COLORS:
             robot.drive_time(28, 0, 800)
@@ -216,6 +230,20 @@ while True:
         robot.drive_time(80, 0, 1100)
         robot.drive_time(70, 103, 1500)
         robot.drive_time(35, 0, 1500)
+
+        k = 1
+        turnkonst = 0
+        lastcolor = color_sensor.color()
+        while lastcolor != Color.BLACK:
+            turnkonst += 5
+            robot.turn(-5*k)
+            lastcolor = color_sensor.color()
+            wait(500)
+            if turnkonst == 90:
+                robot.turn(90)
+                k *= -1
+                turnkonst = 0
+                
         deposit +=2
         turn_crossection = 0
         print("sväng")
