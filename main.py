@@ -101,9 +101,24 @@ while True:
             stop = True
             pickupballs = True
         elif color in POSSIBLE_COLORS and turn_crossection == 4:
-            robot.drive_time(80, 0, 1100)
-            robot.drive_time(70, 90, 1620)
+            robot.drive_time(32, 0, 800)
+            k = 1
+            turnkonst = 0
+            lastcolor = color_sensor.color()
+            while lastcolor != Color.BLACK:
+                turnkonst += 5
+                robot.turn(-5*k)
+                lastcolor = color_sensor.color()
+                wait(500)
+                if turnkonst == 120:
+                    robot.turn(120)
+                    k *= -1
+                    turnkonst = 0
+
+            robot.drive_time(50, 0, 1100)
+            robot.drive_time(70, 93, 1620)
             robot.drive_time(60, 0, 1900)
+
 
             k = 1
             turnkonst = 0
@@ -154,6 +169,24 @@ while True:
 
     if deposit >= 4 and stop == True:
         #Nollställer värden för att den ska stå still
+        #Väntar en sekund och läser av färgen igen för att va helt säker att den läst av rätt ^^
+        wait(1000)
+        dropcolor = color_sensor.color()
+
+        robot.drive_time(32, 0, 800)
+        k = 1
+        turnkonst = 0
+        lastcolor = color_sensor.color()
+        while lastcolor != Color.BLACK:
+            turnkonst += 5
+            robot.turn(-5*k)
+            lastcolor = color_sensor.color()
+            wait(500)
+            if turnkonst == 120:
+                robot.turn(120)
+                k *= -1
+                turnkonst = 0
+
         Drive_Speed=0
         turn_rate = 0
 
@@ -163,41 +196,35 @@ while True:
         #Sätter turn_crossection till 3 för att den ska svänga nästa gång den läser av en gul färg
         turn_crossection = 3
 
-        #Väntar en sekund och läser av färgen igen för att va helt säker att den läst av rätt ^^
-        wait(1000)
-        lastcolor = color_sensor.color()
-
         #Sekvens där roboten åker fram 320 mm för att inte missa avlastningen av bollarna
         robot.straight(320)
         wait(2000)
 
         print("hej")
         #if satser med 3 olika färgena som öppnar rätt gate beroende på färg
-        if lastcolor == Color.BLUE:
+        if dropcolor == Color.BLUE:
             #färg 1 öppna gate 1 minsta
             gate_big.run_target(90, 90)
             wait(1000)
             gate_big.run_target(90, 0)
-            stop = False
             print("Blå")
-        elif lastcolor == Color.RED:
+        elif dropcolor == Color.RED:
             #färg 2 öppna gate 2 mellersta
             gate_big.run_target(90, -90)
             wait(1000)
             gate_big.run_target(90, 0)
-            stop = False
             print("röd")
-        elif lastcolor == Color.WHITE:
+        elif dropcolor == Color.WHITE:
             #färg 3 öppna gate 3 största bollarna
             gate_small_medium.run_target(90, -90)
             wait(1000)
             gate_small_medium.run_target(90, 0)
-            stop = False
             print("vit")
         
         #Adderar pickup med 1 varje deposit(pickup=3 -> whileloop som åker och plockar upp nya bollar)
         pickup +=1
         wait(1000)
+        stop = False
 
         #Sekvens som backar tillbacks roboten och sen gör en 180-sväng(260 är en konstig felfaktor men den svänger 180)
         robot.straight(-360)
@@ -228,7 +255,7 @@ while True:
     elif color in POSSIBLE_COLORS and turn_crossection >= 4 and stop == False:
         #Sekvens för sväng kan behövas finjusteras men den funkar atm
         #test ^^
-        robot.drive_time(28, 0, 800)
+        robot.drive_time(32, 0, 800)
         k = 1
         turnkonst = 0
         lastcolor = color_sensor.color()
@@ -242,8 +269,8 @@ while True:
                 k *= -1
                 turnkonst = 0
 
-        robot.drive_time(80, 0, 1100)
-        robot.drive_time(70, 90, 1620)
+        robot.drive_time(50, 0, 1100)
+        robot.drive_time(70, 93, 1620)
         robot.drive_time(60, 0, 1900)
 
         k = 1
