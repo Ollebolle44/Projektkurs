@@ -68,7 +68,7 @@ while True:
             wait(5000)
             print("yes det funkar")
             robot.straight(-100)
-            robot.turn(260)
+            robot.turn(265)
             k = 1
             turnkonst = 0
             lastcolor = color_sensor.color()
@@ -77,8 +77,8 @@ while True:
                 robot.turn(-5*k)
                 lastcolor = color_sensor.color()
                 wait(500)
-                if turnkonst == 90:
-                    robot.turn(90)
+                if turnkonst == 120:
+                    robot.turn(120)
                     k *= -1
                     turnkonst = 0
             
@@ -102,8 +102,8 @@ while True:
             pickupballs = True
         elif color in POSSIBLE_COLORS and turn_crossection == 4:
             robot.drive_time(80, 0, 1100)
-            robot.drive_time(70, 99, 1500)
-            robot.drive_time(35, 0, 1500)
+            robot.drive_time(70, 90, 1620)
+            robot.drive_time(60, 0, 1900)
 
             k = 1
             turnkonst = 0
@@ -113,8 +113,8 @@ while True:
                 robot.turn(-5*k)
                 lastcolor = color_sensor.color()
                 wait(500)
-                if turnkonst == 90:
-                    robot.turn(90)
+                if turnkonst == 120:
+                    robot.turn(120)
                     k *= -1
                     turnkonst = 0
 
@@ -202,7 +202,7 @@ while True:
         #Sekvens som backar tillbacks roboten och sen gör en 180-sväng(260 är en konstig felfaktor men den svänger 180)
         robot.straight(-360)
         wait(1000)
-        robot.turn(290)
+        robot.turn(265)
         wait(1000)
         
         k = 1
@@ -213,8 +213,8 @@ while True:
             robot.turn(-5*k)
             lastcolor = color_sensor.color()
             wait(500)
-            if turnkonst == 90:
-                robot.turn(90)
+            if turnkonst == 120:
+                robot.turn(120)
                 k *= -1
                 turnkonst = 0
             
@@ -227,9 +227,24 @@ while True:
         stop = True
     elif color in POSSIBLE_COLORS and turn_crossection >= 4 and stop == False:
         #Sekvens för sväng kan behövas finjusteras men den funkar atm
+        #test ^^
+        robot.drive_time(28, 0, 800)
+        k = 1
+        turnkonst = 0
+        lastcolor = color_sensor.color()
+        while lastcolor != Color.BLACK:
+            turnkonst += 5
+            robot.turn(-5*k)
+            lastcolor = color_sensor.color()
+            wait(500)
+            if turnkonst == 120:
+                robot.turn(120)
+                k *= -1
+                turnkonst = 0
+
         robot.drive_time(80, 0, 1100)
-        robot.drive_time(70, 103, 1500)
-        robot.drive_time(35, 0, 1500)
+        robot.drive_time(70, 90, 1620)
+        robot.drive_time(60, 0, 1900)
 
         k = 1
         turnkonst = 0
@@ -239,11 +254,11 @@ while True:
             robot.turn(-5*k)
             lastcolor = color_sensor.color()
             wait(500)
-            if turnkonst == 90:
-                robot.turn(90)
+            if turnkonst == 120:
+                robot.turn(120)
                 k *= -1
                 turnkonst = 0
-                
+
         deposit +=2
         turn_crossection = 0
         print("sväng")
