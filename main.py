@@ -77,8 +77,8 @@ while True:
                 robot.turn(-5*k)
                 lastcolor = color_sensor.color()
                 wait(500)
-                if turnkonst == 120:
-                    robot.turn(120)
+                if turnkonst == 90:
+                    robot.turn(90)
                     k *= -1
                     turnkonst = 0
             
@@ -110,12 +110,12 @@ while True:
                 robot.turn(-5*k)
                 lastcolor = color_sensor.color()
                 wait(500)
-                if turnkonst == 120:
-                    robot.turn(120)
+                if turnkonst == 90:
+                    robot.turn(90)
                     k *= -1
                     turnkonst = 0
 
-            robot.drive_time(50, 0, 1100)
+            robot.drive_time(55, 0, 1100)
             robot.drive_time(70, 93, 1620)
             robot.drive_time(60, 0, 1900)
 
@@ -128,8 +128,8 @@ while True:
                 robot.turn(-5*k)
                 lastcolor = color_sensor.color()
                 wait(500)
-                if turnkonst == 120:
-                    robot.turn(120)
+                if turnkonst == 90:
+                    robot.turn(90)
                     k *= -1
                     turnkonst = 0
 
@@ -182,8 +182,8 @@ while True:
             robot.turn(-5*k)
             lastcolor = color_sensor.color()
             wait(500)
-            if turnkonst == 120:
-                robot.turn(120)
+            if turnkonst == 90:
+                robot.turn(90)
                 k *= -1
                 turnkonst = 0
 
@@ -240,8 +240,8 @@ while True:
             robot.turn(-5*k)
             lastcolor = color_sensor.color()
             wait(500)
-            if turnkonst == 120:
-                robot.turn(120)
+            if turnkonst == 90:
+                robot.turn(90)
                 k *= -1
                 turnkonst = 0
             
@@ -264,12 +264,12 @@ while True:
             robot.turn(-5*k)
             lastcolor = color_sensor.color()
             wait(500)
-            if turnkonst == 120:
-                robot.turn(120)
+            if turnkonst == 90:
+                robot.turn(90)
                 k *= -1
                 turnkonst = 0
 
-        robot.drive_time(50, 0, 1100)
+        robot.drive_time(55, 0, 1100)
         robot.drive_time(70, 93, 1620)
         robot.drive_time(60, 0, 1900)
 
@@ -281,8 +281,8 @@ while True:
             robot.turn(-5*k)
             lastcolor = color_sensor.color()
             wait(500)
-            if turnkonst == 120:
-                robot.turn(120)
+            if turnkonst == 90:
+                robot.turn(90)
                 k *= -1
                 turnkonst = 0
 
