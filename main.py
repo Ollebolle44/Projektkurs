@@ -31,6 +31,12 @@ ultrasonic_sensor = UltrasonicSensor(Port.S4)
 
 #Bluetooth
 #server = BluetoothMailboxServer()
+#SERVER = 'ev3dev'
+"""
+print('waiting for connection...')
+server.wait_for_connection()
+print('connected!')
+"""
 #bluetot = LogicMailbox(name, server)
 
 #Gör så att båda motorerna kan gå samtidigt
@@ -61,6 +67,74 @@ while True:
     ultrasensor = ultrasonic_sensor.distance()
     print("distance")
     print(ultrasensor)
+
+
+
+    while pickup >=3:
+        rsensor = right_sensor.reflection()
+        lsensor = left_sensor.reflection()
+        color = color_sensor.color()
+        ultrasensor = ultrasonic_sensor.distance()
+        print("distance")
+        print(ultrasensor)
+        if ultrasensor <= 195:
+            #sekvens vid upphämtning av bollar
+            wait(10000)
+            robot.straight(-100)
+            wait(1000)
+            robot.turn(360)
+            wait(1000)
+            
+            #reset values
+            pickup=0
+            Drive_Speed = 40
+            turn_rate = 0
+            turn_crossection = 3
+            deposit = 1
+            pickup = 0
+            beenyellow = False
+        elif color in POSSIBLE_COLORS and turn_crossection >= 4:
+            #Sekvens för sväng kan behövas finjusteras men den funkar atm
+            #test ^^
+            robot.drive_time(32, 0, 800)
+
+            robot.drive_time(70, 0, 1100)
+            robot.drive_time(70, 110, 1620)
+            robot.drive_time(60, 0, 1900)
+
+            
+            deposit +=2
+            turn_crossection = 0
+            print("sväng:")
+            print(color)
+        elif color == Color.YELLOW:
+            turn_crossection += 1
+            #Sekvens så att färgsensr åker förbi tejpen och inte läser av den igen
+            robot.drive_time(32, 0, 800)
+        elif rsensor < Black:
+            turn_rate = 50
+            #print("höger")
+        elif lsensor < Black:
+            turn_rate = -50
+            #print("vänster")
+        else:
+            turn_rate = 0
+
+    
+        robot.drive(Drive_Speed, turn_rate)
+
+
+
+
+
+
+
+
+
+
+
+
+
     if deposit >= 4:
         #Nollställer värden för att den ska stå still
         #Väntar en sekund och läser av färgen igen för att va helt säker att den läst av rätt ^^
@@ -134,22 +208,43 @@ while True:
         if beenyellow == True:
             #if satser med 3 olika färgena som öppnar rätt gate beroende på färg
             if dropcolor == Color.BLUE:
-                #färg 1 öppna gate 1 minsta
+                #färg 1 öppna gate 1 stora bollar
                 gate_big.run_target(90, 90)
+                wait(1000)
+                #wiggle wiggle
+                robot.straight(20)
+                robot.straight(-20)
+                robot.straight(20)
+                robot.straight(-20)
+                
                 wait(1000)
                 gate_big.run_target(90, 0)
                 print("Blå")
             elif dropcolor == Color.RED:
                 #färg 2 öppna gate 2 mellersta
-                gate_medsmall.run_target(90, -90)
+                gate_medsmall.run_target(60, -60)
                 wait(1000)
-                gate_medsmall.run_target(90, 0)
+                #wiggle wiggle
+                robot.straight(20)
+                robot.straight(-20)
+                robot.straight(20)
+                robot.straight(-20)
+                
+                wait(1000)
+                gate_medsmall.run_target(60, 0)
                 print("röd")
             elif dropcolor == Color.WHITE:
                 #färg 3 öppna gate 3 största bollarna
-                gate_medsmall.run_target(90, 90)
+                gate_medsmall.run_target(60, 60)
                 wait(1000)
-                gate_medsmall.run_target(90, 0)
+                #wiggle wiggle
+                robot.straight(20)
+                robot.straight(-20)
+                robot.straight(20)
+                robot.straight(-20)
+                
+                wait(1000)
+                gate_medsmall.run_target(60, 0)
                 print("vit")
         
 
@@ -174,7 +269,7 @@ while True:
         #test ^^
         robot.drive_time(32, 0, 800)
 
-        robot.drive_time(75, 0, 1100)
+        robot.drive_time(100, 0, 1100)
         robot.drive_time(70, 110, 1620)
         robot.drive_time(60, 0, 1900)
 
